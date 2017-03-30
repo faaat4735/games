@@ -49,7 +49,7 @@ if (file_exists(CONFIG_DIR . 'config.php')) {
 /**
  * library
  */
-!defined('LIB_DIR') && define('LIB_DIR', __DIR__ . '/library/');
+!defined('LIB_DIR') && define('LIB_DIR', __DIR__ . '/library/Frank/');
 
 // /**
 //  * Res director
