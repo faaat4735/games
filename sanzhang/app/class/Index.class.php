@@ -3,7 +3,7 @@ Class Index
 {
     public function test()
     {
-        echo 123;
+        return array('test' => 'test12434535');
     }
 
     public function testSmtp()
