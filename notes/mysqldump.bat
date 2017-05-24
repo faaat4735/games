@@ -1,0 +1,1 @@
+"E:\mysql\bin\mysqldump" -u root -h localhost -p notes > "d:/sites/games/notes/notes_backup.sql"

@@ -1,5 +1,5 @@
 <?php
-    $sql = "SELECT * FROM notes_info";
+    $sql = "SELECT * FROM notes_info ORDER BY add_time DESC";
     $notesList = $GLOBALS['db']->getAll($sql);
 ?>
 <!DOCTYPE html>

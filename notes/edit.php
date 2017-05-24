@@ -2,6 +2,10 @@
     if (isset($_GET['id']) && $_GET['id']) {
       $sql = "SELECT * FROM notes_info WHERE id = ?";
       $notesInfo = $GLOBALS['db']->getRow($sql, $_GET['id']);
+      if ($notesInfo['disabled']) {
+          echo 'you can\'t edit it!';
+          exit;
+      }
     }
     if (isset($_POST['action'])) {
         if ($_POST['id']) {
