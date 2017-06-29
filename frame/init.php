@@ -4,13 +4,18 @@ use Ebd\Loader\Autoloader;
 use Ebd\ServiceLocator\ServiceLocator;
 use Ebd\Utils\Http;
 
+
+//DS
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+
+
 /**
  * filesystem constants
  */
 define('APP_DIR',       ROOT_DIR . 'app/');
-// define('TMP_DIR',       ROOT_DIR . 'tmp/');
 define('LOG_DIR',       ROOT_DIR . 'log/');
-// define('PUBLIC_DIR',    WWW_DIR  . 'public/');
 define('CLASS_DIR',    APP_DIR  . 'class/');
 define('CONFIG_DIR',    APP_DIR  . 'config/');
 define('INC_DIR',       APP_DIR  . 'include/');
@@ -18,10 +23,7 @@ define('TPL_DIR',       APP_DIR  . 'template/');
 // additions
 define('JS_DIR',        ROOT_DIR . 'static/src/js/');
 define('CSS_DIR',       ROOT_DIR . 'static/src/css/');
-// define('AUDIO_DIR',     ROOT_DIR . 'static/src/audio/');
-// define('BANNER_DIR',    ROOT_DIR . 'static/src/banner/');
 define('IMG_DIR',       ROOT_DIR . 'static/src/image/');
-// define('MAIL_IMG_DIR',  ROOT_DIR . 'static/src/mail/');
 
 
 
@@ -56,10 +58,6 @@ if (file_exists(CONFIG_DIR . 'config.php')) {
 //  */
 !defined('RES_DIR') && define('RES_DIR', ROOT_DIR . '../res/');
 define('UPLOAD_PHOTO_DIR',      RES_DIR . 'upload/photo/');
-// define('UPLOAD_PHOTOTRY_DIR',   RES_DIR . 'upload/phototry/');
-// define('UPLOAD_SOCIAL_DIR',     RES_DIR . 'upload/social/');
-// define('UPLOAD_BANNER_DIR',     RES_DIR . 'upload/banner/');
-// define('UPLOAD_RXIMAGE_DIR',    RES_DIR . 'upload/rx_image/');
 
 // /**#@+
 //  * host information
@@ -78,12 +76,6 @@ define('UPLOAD_PHOTO_DIR',      RES_DIR . 'upload/photo/');
 // !defined('DB_USERNAME') && define('DB_USERNAME', 'ebd_dev');
 // !defined('DB_PASSWORD') && define('DB_PASSWORD', 'ebd');
 // !defined('DB_DATABASE') && define('DB_DATABASE', 'ebd_main_bak');
-
-// !defined('DB2_HOST') && define('DB2_HOST', DB_HOST);
-// !defined('DB2_PORT') && define('DB2_PORT', DB_PORT);
-// !defined('DB2_USERNAME') && define('DB2_USERNAME', DB_USERNAME);
-// !defined('DB2_PASSWORD') && define('DB2_PASSWORD', DB_PASSWORD);
-// !defined('DB2_DATABASE') && define('DB2_DATABASE', DB_DATABASE);
 // /**#@-*/
 
 
@@ -95,62 +87,6 @@ define('UPLOAD_PHOTO_DIR',      RES_DIR . 'upload/photo/');
 // !defined('REDIS_PORT') && define('REDIS_PORT', '6379');
 // /**#@-*/
 
-// /**
-//  * Locale code
-//  */
-// $_isMicroSite = strtolower(substr($_SERVER['HTTP_HOST'], 0, 6));
-// define('MICRO_SITE', $_isMicroSite == 'eyezen' ? 1 : 0 );
-// define('CN_SITE', (strpos($_SERVER['HTTP_HOST'], 'cn') === 0) ? 1 : 0 );
-
-// $_locales = array('US' => 'en', 'AU' => 'en', 'CA' => 'en',  'DE' => 'de', 'FR' => 'fr', 'GB' => 'en');
-// if (stripos($_SERVER['HTTP_HOST'], 'eyebuydirect.de') !== false) {
-//     define('LOCATION_CODE', 'DEU');
-//     define('LOCALE_CODE', 'DE');
-// } else if (stripos($_SERVER['HTTP_HOST'], 'eyebuydirect.co.uk') !== false) {
-//     define('LOCATION_CODE', 'GBR');
-//     define('LOCALE_CODE', 'GB');
-// } else {
-//     $_locations = array('US' => 'USA', 'AU' => 'AUS', 'CA' => 'CAN', 'DE' => 'DEU', 'FR' => 'FRA', 'GB' => 'GBR');
-//     $_prefix = strtoupper(substr($_SERVER['HTTP_HOST'], 0, 2));
-//     define('LOCATION_CODE', isset($_locations[$_prefix]) ? $_locations[$_prefix] : (MICRO_SITE ? 'EYEZEN' : 'USA'));
-    
-//     $_locale = strtoupper(substr($_SERVER['HTTP_HOST'], 0, 2));
-//     define('LOCALE_CODE', array_key_exists($_locale, $_locales) ? $_locale : 'US');
-// }
-
-// /**
-//  * the base path of urls
-//  */
-//  if (LOCALE_CODE === 'CA' && substr($_SERVER['REQUEST_URI'], 0, 4) === '/fr/') {
-//     !defined('BASE_PATH') && define('BASE_PATH', '/fr/');
-//  } else {
-//     !defined('BASE_PATH') && define('BASE_PATH', '/');
-// }
-
-// /**
-//  *  Language
-//  */
-// define('LANG_CODE',     BASE_PATH == '/fr/' ? 'fr' : $_locales[LOCALE_CODE]);
-// define('LANG_LOCALE',   LANG_CODE . '-' . LOCALE_CODE);
-
-// /**#@+
-//  * configuration
-//  */
-// const MIN_STOCK         = 2;
-// const BIFOCAL_HEIGHT            = 28;
-// const PROGRESSIVE_HEIGHT        = 30;
-// const RIMLESS_MULTIFOCAL_HEIGHT = 24;
-
-// const TYPE_EYEGLASSES   = 'eyeglasses';
-// const TYPE_SUNGLASSES   = 'sunglasses';
-
-// const PLUGIN_MANAGER    = 'Ebd\Controller\PluginManager';
-// const HELPER_MANAGER    = 'Ebd\View\HelperManager';
-// const MODEL_MANAGER     = 'Ebd\Model\ModelManager';
-// const PAYMENT_MANAGER   = 'Ebd\Ecommerce\Payment\PaymentManager';
-// const SHIPPING_MANAGER  = 'Ebd\Ecommerce\Shipping\ShippingManager';
-// const TOTAL_MANAGER     = 'Ebd\Ecommerce\Total\TotalManager';
-// /**#@-*/
 
 /**
  * register autoload
@@ -166,32 +102,19 @@ define('UPLOAD_PHOTO_DIR',      RES_DIR . 'upload/photo/');
 //auto load classes
 function ebd_autoload($className)
 {
-    // $classFileName = str_replace('_', DS, $className) . '.class.php';
-    $classFileName = $className . '.class.php';
-    require_once CLASS_DIR . $classFileName;
+    $classFileName = str_replace('_', DS, $className) . '.class.php';
 
-
-    // if (file_exists(CLASS_DIR . $classFileName)) {
-    //     require_once CLASS_DIR . $classFileName;
-    // }
-
+    if (file_exists(CLASS_DIR . $classFileName)) {
+        require_once CLASS_DIR . $classFileName;
+    }
     // elseif (file_exists(LIB_CLASS_DIR . $classFileName)) {
     //     require_once LIB_CLASS_DIR . $classFileName;
     // }
-
-    // else {
-    //     return false;
-    // }
+    else {
+        return false;
+    }
 }
 spl_autoload_register('ebd_autoload');
-
-// /**
-//  * I18N
-//  */
-// function __($str)
-// {
-//     return gettext($str);
-// }
 
 // /* @var $locator ServiceLocator */
 // $GLOBALS['locator'] = new ServiceLocator(include CONFIG_DIR . 'services.php');
