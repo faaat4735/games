@@ -6,7 +6,9 @@
     $db->query("SET NAMES 'UTF8'");
     $GLOBALS['db'] = $db;
     if (isset($_GET['a'])) {
+        include_once 'header.php';
         include_once ltrim($_GET['a'], '/') . '.php';
+        include_once 'footer.php';
         exit;
     }
 
