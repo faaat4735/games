@@ -44,7 +44,8 @@
 <script>
     function Editor(input, preview) {
         this.update = function () {
-          preview.innerHTML = markdown.toHTML(input.value);
+            // preview.innerHTML = markdown.toHTML(input.value);
+            preview.innerHTML = marked(input.value);
         };
         input.editor = this;
         this.update();

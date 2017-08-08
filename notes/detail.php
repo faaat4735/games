@@ -10,7 +10,7 @@
 <div id="preview"> </div>
 <script>
     function Editor(input, preview) {
-        preview.innerHTML = markdown.toHTML(input.value);
+        preview.innerHTML = marked(input.value);
     }
     new Editor($("#text-input").get(0), $("#preview").get(0));
 </script>
