@@ -8,7 +8,7 @@
         $sql = "SELECT * FROM notes_info ORDER BY add_time DESC LIMIT " . $pageStart . "," . $pageSize;
         $notesList = $db->getAll($sql);
         $pageHtml = "<ul class=\"pager\">";
-        $pageHtml .= $page > 1 ? "<li><a href=\"/list?page=($page-1)\">Previous</a></li>" : "";
+        $pageHtml .= $page > 1 ? "<li><a href=\"/list?page=" . ($page - 1) . "\">Previous</a></li>" : "";
         for ($i = 1, $endNumber = ceil($notesCount / $pageSize);$i<=$endNumber;$i++) {
             if ($i == $page) {
                 $pageHtml .= "<li>$i</li>";
@@ -16,7 +16,7 @@
                 $pageHtml .= "<li><a href=\"/list?page=$i\">$i</a></li>";
             }
         }
-        $pageHtml .= $page < $endNumber ? "<li><a href=\"/list?page=($page+1)\">Next</a></li>" : "";
+        $pageHtml .= $page < $endNumber ? "<li><a href=\"/list?page=" . ($page+1) . "\">Next</a></li>" : "";
         $pageHtml .= "</ul>";
     }
 ?>
@@ -32,4 +32,4 @@
         </a>
     <?php endforeach;?>
     <?php echo isset($pageHtml) ? $pageHtml : '';?>
-</div>
+</div>  

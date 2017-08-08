@@ -12,6 +12,5 @@
     function Editor(input, preview) {
         preview.innerHTML = markdown.toHTML(input.value);
     }
-    var $ = function (id) { return document.getElementById(id); };
-    new Editor($("text-input"), $("preview"));
+    new Editor($("#text-input").get(0), $("#preview").get(0));
 </script>
