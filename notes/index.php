@@ -1,6 +1,7 @@
 <?php
     // !defined('URL_MODE') && define('URL_MODE', 1);
 
+    require_once ('init.php');
     include_once 'sql.php';
     $db = new Db();
     $db->query("SET NAMES 'UTF8'");

@@ -3,7 +3,8 @@ class Db extends \PDO
 {
     public function __construct()
     {
-        parent::__construct('mysql:dbname=notes;host=localhost;', 'root', '123');
+        parent::__construct('mysql:dbname=' . DBNAME . ';host=' . HOSTNAME . ';', DBUSER, DBPASS);
+        // parent::__construct('mysql:dbname=notes;host=localhost;', 'root', '123');
     }
     /**
      * Override the parent method
