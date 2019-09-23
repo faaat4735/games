@@ -1,4 +1,8 @@
 <?php
+    if (isset($_GET['notes_info_id']) && $_GET['notes_info_id']) {
+        $sql = "DELETE FROM notes_info WHERE notes_info_id = ?";
+        $db->exec($sql, $_GET['notes_info_id']);
+    }
     $sql = "SELECT count(notes_info_id) FROM notes_info";
     if (isset($_GET['search']) && $_GET['search']) {
         $sql .= " WHERE title like '%" . $_GET['search'] . "%'";
@@ -34,13 +38,16 @@
 <div class="list-group">
 <?php if (isset($notesList)) :?>
     <?php foreach ($notesList as $notes) :?>
-        <a href="<?php echo 'detail?notes_info_id=' . $notes['notes_info_id']?>" class="list-group-item     list-group-item-action flex-column align-items-start ">
-            <div class="d-flex w-100 justify-content-between">
+        <div class="d-flex w-100 justify-content-between list-group-item list-group-item-action flex-column align-items-start ">
+            <a href="<?php echo 'detail?notes_info_id=' . $notes['notes_info_id']?>" class="">
                 <h5 class="mb-1"><?php echo $notes['title']?></h5>
-                <small>发布时间：<?php echo $notes['add_time'];?></small>
-                <small>更新时间：<?php echo $notes['update_time'];?></small>
-            </div>
-        </a>
+            </a>
+            <small>发布时间：<?php echo $notes['add_time'];?></small>
+            <small>更新时间：<?php echo $notes['update_time'];?></small>
+            <a href="<?php echo 'detail?notes_info_id=' . $notes['notes_info_id']?>" class="">
+                <button ><a class='btn btn-primary btn-lg active' href="<?php echo 'list?notes_info_id=' . $notes['notes_info_id']?>">delete</a></button>
+            </a>
+        </div>
     <?php endforeach;?>
 <?php else:?>
     not found
